@@ -1,6 +1,6 @@
 package by.vsu.Lagger.dao;
 
-import by.vsu.Lagger.entity.Company;
+import by.vsu.Lagger.entity.Parent;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
@@ -9,6 +9,6 @@ import javax.transaction.Transactional;
  * Created by Zver.
  */
 @Transactional
-public interface CompanyDao extends CrudRepository<Company, Long> {
-    Company findById(Long Id);
+public interface ParentDao extends CrudRepository<Parent,Long> {
+    Parent findById(Long id);
 }

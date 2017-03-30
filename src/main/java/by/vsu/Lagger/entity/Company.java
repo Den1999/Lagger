@@ -2,6 +2,8 @@ package by.vsu.Lagger.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Zver on 30.03.2017.
@@ -11,7 +13,7 @@ import java.io.Serializable;
 public class Company implements Serializable {
 
     private static final long serialVersionUID = -7788619177798333712L;
-    
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +23,17 @@ public class Company implements Serializable {
     private String title;
 
     @Column(name = "permits")
-
     private Integer permits;
+
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    private Set<Parent> parents = new HashSet<>();
+
+    public Company(Long id) {
+        this.id = id;
+    }
+
+    public Company() {
+    }
 
     public Long getId() {
         return id;
@@ -48,11 +59,7 @@ public class Company implements Serializable {
         this.permits = permits;
     }
 
-    public Company(Long id){
-        this.id=id;
-    }
-
-    public Company(){};
+    ;
 
     @Override
     public boolean equals(Object o) {
@@ -70,5 +77,13 @@ public class Company implements Serializable {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (permits != null ? permits.hashCode() : 0);
         return result;
+    }
+
+    public Set<Parent> getParents() {
+        return parents;
+    }
+
+    public void setParents(Set<Parent> parents) {
+        this.parents = parents;
     }
 }

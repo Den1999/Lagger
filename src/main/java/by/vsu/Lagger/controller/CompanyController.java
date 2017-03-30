@@ -52,7 +52,6 @@ public class CompanyController {
 
     /**
      * delete company by id
-     *
      * @param id is id
      * @return company
      */

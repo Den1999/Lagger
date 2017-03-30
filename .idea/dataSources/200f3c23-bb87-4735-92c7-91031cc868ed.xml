@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-03-30.14:54:27.435</IntrospectionTimestamp>
-      <IntrospectionStateNumber>1400</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-03-30.18:00:38.307</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1408</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -35,35 +35,103 @@
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
     <table id="10" parent="3" name="companies">
-      <ObjectId>17328</ObjectId>
-      <StateNumber>1399</StateNumber>
+      <ObjectId>17335</ObjectId>
+      <StateNumber>1408</StateNumber>
     </table>
-    <column id="11" parent="10" name="id">
+    <table id="11" parent="3" name="parents">
+      <ObjectId>17340</ObjectId>
+      <StateNumber>1408</StateNumber>
+    </table>
+    <column id="12" parent="10" name="id">
       <Position>1</Position>
       <DataType>bigint|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1399</StateNumber>
+      <StateNumber>1406</StateNumber>
     </column>
-    <column id="12" parent="10" name="permits">
+    <column id="13" parent="10" name="permits">
       <Position>2</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>1399</StateNumber>
+      <StateNumber>1406</StateNumber>
     </column>
-    <column id="13" parent="10" name="title">
+    <column id="14" parent="10" name="title">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>1399</StateNumber>
+      <StateNumber>1406</StateNumber>
     </column>
-    <index id="14" parent="10" name="companies_pkey">
-      <ObjectId>17331</ObjectId>
+    <index id="15" parent="10" name="companies_pkey">
+      <ObjectId>17338</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="15" parent="10" name="companies_pkey">
-      <ObjectId>17332</ObjectId>
+    <key id="16" parent="10" name="companies_pkey">
+      <ObjectId>17339</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>companies_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
+    <column id="17" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <column id="18" parent="11" name="dob">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <column id="19" parent="11" name="fname">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <column id="20" parent="11" name="gender">
+      <Position>4</Position>
+      <DataType>boolean|0</DataType>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <column id="21" parent="11" name="mphone">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <column id="22" parent="11" name="patron">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <column id="23" parent="11" name="relations">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <column id="24" parent="11" name="sname">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <column id="25" parent="11" name="company">
+      <Position>9</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>1407</StateNumber>
+    </column>
+    <index id="26" parent="11" name="parents_pkey">
+      <ObjectId>17346</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="27" parent="11" name="parents_pkey">
+      <ObjectId>17347</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>parents_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="28" parent="11" name="fk_6nwus2yuq4h7dym30ybcbq9bc">
+      <ObjectId>17348</ObjectId>
+      <ColNames>company</ColNames>
+      <RefTableName>companies</RefTableName>
+      <RefKeyName>companies_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>
