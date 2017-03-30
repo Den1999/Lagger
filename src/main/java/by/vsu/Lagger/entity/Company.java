@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class Company implements Serializable {
 
     private static final long serialVersionUID = -7788619177798333712L;
+    
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)

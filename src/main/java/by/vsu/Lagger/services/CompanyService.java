@@ -31,8 +31,8 @@ public class CompanyService {
        companyDao.delete(company);
     }
 
-    public void edit(Company company) {
-        Company existingCompany =  new Company();
+    public void edit(Company company, Long id) {
+        Company existingCompany =  new Company(id);
         existingCompany.setPermits(company.getPermits());
         existingCompany.setTitle(company.getTitle());
        companyDao.save(existingCompany);
