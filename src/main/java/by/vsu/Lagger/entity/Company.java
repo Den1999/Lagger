@@ -59,8 +59,6 @@ public class Company implements Serializable {
         this.permits = permits;
     }
 
-    ;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,13 +75,5 @@ public class Company implements Serializable {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (permits != null ? permits.hashCode() : 0);
         return result;
-    }
-
-    public Set<Parent> getParents() {
-        return parents;
-    }
-
-    public void setParents(Set<Parent> parents) {
-        this.parents = parents;
     }
 }
