@@ -53,11 +53,12 @@ public class Parent implements Serializable {
     )
     private Set<Child> children = new HashSet<>();
 
-    public Parent(Long id){
-        this.id=id;
+    public Parent(Long id) {
+        this.id = id;
     }
 
-    public Parent(){}
+    public Parent() {
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -177,5 +178,19 @@ public class Parent implements Serializable {
 
     public void setChildren(Set<Child> children) {
         this.children = children;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\n\"id\":" + id +
+                ", \n\"sname:\"" + sname + '\"' +
+                ", \n\"fname:\"" + fname + '\"' +
+                ", \n\"patron:\"" + patron + '\"' +
+                ", \n\"dob=\"" + dob + '\"' +
+                ", \n\"gender:" + gender +
+                ", \n\"mphone:\"" + mphone + '\"' +
+                ", \n\"relations:\"" + relations + '\"' +
+                "\n}";
     }
 }

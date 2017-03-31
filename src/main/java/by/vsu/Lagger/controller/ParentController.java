@@ -1,6 +1,5 @@
 package by.vsu.Lagger.controller;
 
-import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
 import by.vsu.Lagger.services.ParentService;
 import org.slf4j.Logger;
@@ -30,8 +29,8 @@ public class ParentController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
-    Parent getParent(@PathVariable("id") Long id) {
-        return parentService.get(id);
+    String getParent(@PathVariable("id") Long id) {
+        return parentService.get(id).toString();
     }
 
 
@@ -44,10 +43,10 @@ public class ParentController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public
     @ResponseBody
-    Parent createParent(@RequestBody Parent parent) {
+    String createParent(@RequestBody Parent parent) {
         logger.info("Start create parent.");
         parentService.add(parent);
-        return parent;
+        return parent.toString();
     }
 
 
@@ -60,11 +59,11 @@ public class ParentController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public
     @ResponseBody
-    Parent deleteParent(@PathVariable("id") Long id) {
+    String deleteParent(@PathVariable("id") Long id) {
         logger.info("Start delete parent.");
         Parent parent = parentService.get(id);
         parentService.delete(id);
-        return parent;
+        return parent.toString();
     }
 
 
@@ -77,10 +76,10 @@ public class ParentController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    Parent editParent(@PathVariable("id") Long id, @RequestBody Parent parent) {
+    String editParent(@PathVariable("id") Long id, @RequestBody Parent parent) {
         logger.info("Start update parent.");
         parentService.edit(parent, id);
-        return parent;
+        return parent.toString();
     }
 
 
@@ -94,10 +93,10 @@ public class ParentController {
     @RequestMapping(value = "/addcompany/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    Parent addCompany(@PathVariable("id") Long id, @RequestBody Parent parent) {
+    String addCompany(@PathVariable("id") Long id, @RequestBody Parent parent) {
         logger.info("Start add company to parent.");
         parentService.addCompany(id, parent);
-        return parentService.get(id);
+        return parentService.get(id).toString();
     }
 
 
@@ -111,10 +110,10 @@ public class ParentController {
     @RequestMapping(value = "/addaddress/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    Parent addAddress(@PathVariable("id") Long id, @RequestBody Parent parent) {
+    String addAddress(@PathVariable("id") Long id, @RequestBody Parent parent) {
         logger.info("Start add address to parent.");
         parentService.addAddress(id, parent);
-        return parentService.get(id);
+        return parentService.get(id).toString();
     }
 
     /**
@@ -127,9 +126,9 @@ public class ParentController {
     @RequestMapping(value = "/addchild/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    Parent addParent(@PathVariable("id") Long id, @RequestBody Parent parent) {
+    String addChild(@PathVariable("id") Long id, @RequestBody Parent parent) {
         logger.info("Start add address to child.");
         parentService.addChild(id, parent);
-        return parentService.get(id);
+        return parentService.get(id).toString();
     }
 }

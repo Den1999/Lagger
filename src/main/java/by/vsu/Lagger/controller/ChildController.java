@@ -29,8 +29,8 @@ public class ChildController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
-    Child getChild(@PathVariable("id") Long id) {
-        return childService.get(id);
+    String getChild(@PathVariable("id") Long id) {
+        return childService.get(id).toString();
     }
 
 
@@ -43,10 +43,10 @@ public class ChildController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public
     @ResponseBody
-    Child createChild(@RequestBody Child child) {
+    String createChild(@RequestBody Child child) {
         logger.info("Start create child.");
         childService.add(child);
-        return child;
+        return child.toString();
     }
 
 
@@ -59,11 +59,11 @@ public class ChildController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public
     @ResponseBody
-    Child deleteChild(@PathVariable("id") Long id) {
+    String deleteChild(@PathVariable("id") Long id) {
         logger.info("Start delete child.");
         Child child = childService.get(id);
         childService.delete(id);
-        return child;
+        return child.toString();
     }
 
 
@@ -76,43 +76,43 @@ public class ChildController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    Child editChild(@PathVariable("id") Long id, @RequestBody Child child) {
+    String editChild(@PathVariable("id") Long id, @RequestBody Child child) {
         logger.info("Start update child.");
         childService.edit(child, id);
-        return child;
+        return child.toString();
     }
 
 
     /**
      * add squad to child
      *
-     * @param id     is id
+     * @param id    is id
      * @param child is child
      * @return child
      */
     @RequestMapping(value = "/addsquad/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    Child addCompany(@PathVariable("id") Long id, @RequestBody Child child) {
+    String addCompany(@PathVariable("id") Long id, @RequestBody Child child) {
         logger.info("Start add squad to child.");
         childService.addSquad(id, child);
-        return childService.get(id);
+        return childService.get(id).toString();
     }
 
 
     /**
      * add address to child
      *
-     * @param id     is id
+     * @param id    is id
      * @param child is child
      * @return child
      */
     @RequestMapping(value = "/addaddress/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    Child addAddress(@PathVariable("id") Long id, @RequestBody Child child) {
+    String addAddress(@PathVariable("id") Long id, @RequestBody Child child) {
         logger.info("Start add address to child.");
         childService.addAddress(id, child);
-        return childService.get(id);
+        return childService.get(id).toString();
     }
 }

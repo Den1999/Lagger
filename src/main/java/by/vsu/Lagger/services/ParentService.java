@@ -1,14 +1,12 @@
 package by.vsu.Lagger.services;
 
 import by.vsu.Lagger.dao.ChildDao;
-import by.vsu.Lagger.dao.CompanyDao;
 import by.vsu.Lagger.dao.ParentDao;
 import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -67,8 +65,8 @@ public class ParentService {
         Parent existingParent = parentDao.findOne(id);
         Set<Child> children = parent.getChildren();
         existingParent.setChildren(children);
-        for (Child c : children){
-           childService.addParent(c.getId(),c);
+        for (Child c : children) {
+            childService.addParent(c.getId(), c);
         }
         parentDao.save(existingParent);
     }

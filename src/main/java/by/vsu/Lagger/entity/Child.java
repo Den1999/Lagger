@@ -159,4 +159,17 @@ public class Child implements Serializable {
     public void setParents(Set<Parent> parents) {
         this.parents = parents;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\n\"id\":" + id +
+                ", \n\"sname\":\"" + sname + '\"' +
+                ", \n\"fname\":\"" + fname + '\"' +
+                ", \n\"patron\":\"" + patron + '\"' +
+                ", \n\"dob\":\"" + dob + '\"' +
+                ", \n\"gender\":" + gender +
+                ", \n\"mphone\":\"" + mphone + '\"' +
+                "\n}";
+    }
 }
