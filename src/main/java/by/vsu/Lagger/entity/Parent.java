@@ -2,6 +2,8 @@ package by.vsu.Lagger.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Zver.
@@ -41,9 +43,21 @@ public class Parent implements Serializable {
     @ManyToOne
     private Company company;
 
+    @ManyToOne
+    private Address address;
+
+    @ManyToMany
+    @JoinTable(name = "chpa",
+            joinColumns = @JoinColumn(name = "par_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "ch_id", referencedColumnName = "id")
+    )
+    private Set<Child> children = new HashSet<>();
+
     public Parent(Long id){
         this.id=id;
     }
+
+    public Parent(){}
 
     @Override
     public boolean equals(Object o) {
@@ -76,8 +90,6 @@ public class Parent implements Serializable {
         result = 31 * result + (company != null ? company.hashCode() : 0);
         return result;
     }
-
-    public Parent(){}
 
     public Long getId() {
         return id;
@@ -149,5 +161,21 @@ public class Parent implements Serializable {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Set<Child> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Set<Child> children) {
+        this.children = children;
     }
 }

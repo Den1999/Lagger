@@ -2,6 +2,8 @@ package by.vsu.Lagger.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Zver.
@@ -28,6 +30,15 @@ public class Squad implements Serializable {
 
     @Column(name = "maxChildren")
     private Short maxChildren;
+
+    @OneToMany(mappedBy = "squad", fetch = FetchType.LAZY)
+    private Set<Child> children = new HashSet<>();
+
+    public Squad(Long id) {
+        this.id = id;
+    }
+
+    public Squad(){}
 
     @Override
     public boolean equals(Object o) {

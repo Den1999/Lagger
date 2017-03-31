@@ -1,6 +1,6 @@
 package by.vsu.Lagger.controller;
 
-import by.vsu.Lagger.entity.Company;
+import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
 import by.vsu.Lagger.services.ParentService;
 import org.slf4j.Logger;
@@ -53,6 +53,7 @@ public class ParentController {
 
     /**
      * delete parent by id
+     *
      * @param id is id
      * @return parent
      */
@@ -78,13 +79,15 @@ public class ParentController {
     @ResponseBody
     Parent editParent(@PathVariable("id") Long id, @RequestBody Parent parent) {
         logger.info("Start update parent.");
-        parentService.edit(parent,id);
+        parentService.edit(parent, id);
         return parent;
     }
 
+
     /**
      * add company to parent
-     * @param id is id
+     *
+     * @param id     is id
      * @param parent is parent
      * @return parent
      */
@@ -93,7 +96,40 @@ public class ParentController {
     @ResponseBody
     Parent addCompany(@PathVariable("id") Long id, @RequestBody Parent parent) {
         logger.info("Start add company to parent.");
-        parentService.addCompany(id,parent);
+        parentService.addCompany(id, parent);
+        return parentService.get(id);
+    }
+
+
+    /**
+     * add address to parent
+     *
+     * @param id     is id
+     * @param parent is parent
+     * @return parent
+     */
+    @RequestMapping(value = "/addaddress/{id}", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Parent addAddress(@PathVariable("id") Long id, @RequestBody Parent parent) {
+        logger.info("Start add address to parent.");
+        parentService.addAddress(id, parent);
+        return parentService.get(id);
+    }
+
+    /**
+     * add child to parent
+     *
+     * @param id     is id
+     * @param parent is parent
+     * @return child
+     */
+    @RequestMapping(value = "/addchild/{id}", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Parent addParent(@PathVariable("id") Long id, @RequestBody Parent parent) {
+        logger.info("Start add address to child.");
+        parentService.addChild(id, parent);
         return parentService.get(id);
     }
 }
