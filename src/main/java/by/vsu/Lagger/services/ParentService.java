@@ -1,6 +1,5 @@
 package by.vsu.Lagger.services;
 
-import by.vsu.Lagger.dao.ChildDao;
 import by.vsu.Lagger.dao.ParentDao;
 import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
@@ -17,8 +16,6 @@ public class ParentService {
 
     @Autowired
     private ParentDao parentDao;
-    @Autowired
-    private ChildDao childDao;
     @Autowired
     private ChildService childService;
 

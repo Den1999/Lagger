@@ -17,8 +17,6 @@ public class ChildService {
 
     @Autowired
     private ChildDao childDao;
-    @Autowired
-    private ParentDao parentDao;
 
     public Child get(Long id) {
         return childDao.findOne(id);
