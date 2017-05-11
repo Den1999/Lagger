@@ -1,5 +1,8 @@
 package by.vsu.Lagger.entity;
 
+
+import org.springframework.util.StringUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -137,7 +140,12 @@ public class Child implements Serializable {
     }
 
     public Squad getSquad() {
-        return squad;
+        try {
+            return squad;
+        }
+        catch (NullPointerException e){
+            return null;
+        }
     }
 
     public void setSquad(Squad squad) {
@@ -145,7 +153,12 @@ public class Child implements Serializable {
     }
 
     public Address getAddress() {
-        return address;
+        try {
+            return address;
+        }
+        catch (NullPointerException e){
+            return null;
+        }
     }
 
     public void setAddress(Address address) {
@@ -153,7 +166,12 @@ public class Child implements Serializable {
     }
 
     public Set<Parent> getParents() {
-        return parents;
+        try {
+            return parents;
+        }
+        catch (NullPointerException e){
+            return null;
+        }
     }
 
     public void setParents(Set<Parent> parents) {
@@ -162,7 +180,19 @@ public class Child implements Serializable {
 
     @Override
     public String toString() {
-        try {
+        Long addressId, squadId;
+        if(!StringUtils.isEmpty(address)){
+            addressId = address.getId();
+        }
+        else{
+            addressId = null;
+        }
+        if(!StringUtils.isEmpty(squad)){
+            squadId = squad.getId();
+        }
+        else{
+            squadId = null;
+        }
             return "{" +
                     "\n\"id\":" + id +
                     ", \n\"sname\":\"" + sname + '\"' +
@@ -171,52 +201,9 @@ public class Child implements Serializable {
                     ", \n\"dob\":\"" + dob + '\"' +
                     ", \n\"gender\":" + gender +
                     ", \n\"mphone\":\"" + mphone + '\"' +
-                    ", \n\"address\":\"" + address + '\"' +
-                    ", \n\"squad\":\"" + squad + '\"' +
+                        ", \n\"address\":\"" + addressId + '\"' +
+                    ", \n\"squad\":\"" + squadId + '\"' +
+                    //", \n\"parents\":\"" + parents + '\"' +
                     "\n}";
         }
-        catch (NullPointerException e){
-            try {
-                return "{" +
-                        "\n\"id\":" + id +
-                        ", \n\"sname\":\"" + sname + '\"' +
-                        ", \n\"fname\":\"" + fname + '\"' +
-                        ", \n\"patron\":\"" + patron + '\"' +
-                        ", \n\"dob\":\"" + dob + '\"' +
-                        ", \n\"gender\":" + gender +
-                        ", \n\"mphone\":\"" + mphone + '\"' +
-                        ", \n\"address\":\"null" + '\"' +
-                        ", \n\"squad\":\"" + squad + '\"' +
-                        "\n}";
-            }
-            catch (NullPointerException aye){
-                try {
-                    return "{" +
-                            "\n\"id\":" + id +
-                            ", \n\"sname\":\"" + sname + '\"' +
-                            ", \n\"fname\":\"" + fname + '\"' +
-                            ", \n\"patron\":\"" + patron + '\"' +
-                            ", \n\"dob\":\"" + dob + '\"' +
-                            ", \n\"gender\":" + gender +
-                            ", \n\"mphone\":\"" + mphone + '\"' +
-                            ", \n\"address\":\"" + address + '\"' +
-                            ", \n\"squad\":\"null" + '\"' +
-                            "\n}";
-                }
-                catch (NullPointerException gg){
-                    return "{" +
-                            "\n\"id\":" + id +
-                            ", \n\"sname\":\"" + sname + '\"' +
-                            ", \n\"fname\":\"" + fname + '\"' +
-                            ", \n\"patron\":\"" + patron + '\"' +
-                            ", \n\"dob\":\"" + dob + '\"' +
-                            ", \n\"gender\":" + gender +
-                            ", \n\"mphone\":\"" + mphone + '\"' +
-                            ", \n\"address\":\"null" + '\"' +
-                            ", \n\"squad\":\"null" + '\"' +
-                            "\n}";
-                }
-            }
-        }
-    }
 }

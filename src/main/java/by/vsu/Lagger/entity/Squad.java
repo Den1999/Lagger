@@ -65,7 +65,12 @@ public class Squad implements Serializable {
     }
 
     public Long getId() {
-        return id;
+        try {
+            return id;
+        }
+        catch (NullPointerException e){
+            return null;
+        }
     }
 
     public void setId(Long id) {

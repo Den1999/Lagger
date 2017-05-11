@@ -1,5 +1,7 @@
 package by.vsu.Lagger.entity;
 
+import org.springframework.util.StringUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -157,7 +159,12 @@ public class Parent implements Serializable {
     }
 
     public Company getCompany() {
-        return company;
+        try {
+            return company;
+        }
+        catch (NullPointerException e){
+            return null;
+        }
     }
 
     public void setCompany(Company company) {
@@ -165,7 +172,12 @@ public class Parent implements Serializable {
     }
 
     public Address getAddress() {
-        return address;
+        try {
+            return address;
+        }
+        catch (NullPointerException e){
+            return null;
+        }
     }
 
     public void setAddress(Address address) {
@@ -173,7 +185,12 @@ public class Parent implements Serializable {
     }
 
     public Set<Child> getChildren() {
-        return children;
+        try {
+            return children;
+        }
+        catch (NullPointerException e){
+            return null;
+        }
     }
 
     public void setChildren(Set<Child> children) {
@@ -182,65 +199,31 @@ public class Parent implements Serializable {
 
     @Override
     public String toString() {
-        try {
-            return "{" +
-                    "\n\"id\":" + id +
-                    ", \n\"sname:\"" + sname + '\"' +
-                    ", \n\"fname:\"" + fname + '\"' +
-                    ", \n\"patron:\"" + patron + '\"' +
-                    ", \n\"dob=\"" + dob + '\"' +
-                    ", \n\"gender:" + gender +
-                    ", \n\"mphone:\"" + mphone + '\"' +
-                    ", \n\"relations:\"" + relations + '\"' +
-                    ", \n\"company:\"" + company.getId() + '\"' +
-                    ", \n\"address:\"" + address.getId() + '\"' +
-                    "\n}";
+        Long addressId, companyId;
+        if(!StringUtils.isEmpty(address)){
+            addressId = address.getId();
         }
-        catch (NullPointerException e){
-            try {
-                return "{" +
-                        "\n\"id\":" + id +
-                        ", \n\"sname:\"" + sname + '\"' +
-                        ", \n\"fname:\"" + fname + '\"' +
-                        ", \n\"patron:\"" + patron + '\"' +
-                        ", \n\"dob=\"" + dob + '\"' +
-                        ", \n\"gender:" + gender +
-                        ", \n\"mphone:\"" + mphone + '\"' +
-                        ", \n\"relations:\"" + relations + '\"' +
-                        ", \n\"company:\" null" +
-                        ", \n\"address:\"" + address.getId() + '\"' +
-                        "\n}";
-            }
-            catch (NullPointerException aye){
-                try {
-                    return "{" +
-                            "\n\"id\":" + id +
-                            ", \n\"sname:\"" + sname + '\"' +
-                            ", \n\"fname:\"" + fname + '\"' +
-                            ", \n\"patron:\"" + patron + '\"' +
-                            ", \n\"dob=\"" + dob + '\"' +
-                            ", \n\"gender:" + gender +
-                            ", \n\"mphone:\"" + mphone + '\"' +
-                            ", \n\"relations:\"" + relations + '\"' +
-                            ", \n\"company:\"" + company.getId() + '\"' +
-                            ", \n\"address:\" null" +
-                            "\n}";
-                }
-                catch (NullPointerException gg){
-                    return "{" +
-                            "\n\"id\":" + id +
-                            ", \n\"sname:\"" + sname + '\"' +
-                            ", \n\"fname:\"" + fname + '\"' +
-                            ", \n\"patron:\"" + patron + '\"' +
-                            ", \n\"dob=\"" + dob + '\"' +
-                            ", \n\"gender:" + gender +
-                            ", \n\"mphone:\"" + mphone + '\"' +
-                            ", \n\"relations:\"" + relations + '\"' +
-                            ", \n\"company:\" null" +
-                            ", \n\"address:\" null" +
-                            "\n}";
-                }
-            }
+        else{
+            addressId = null;
         }
+        if(!StringUtils.isEmpty(company)){
+            companyId = company.getId();
+        }
+        else{
+            companyId = null;
+        }
+        return "{" +
+                "\n\"id\":" + id +
+                ", \n\"sname:\"" + sname + '\"' +
+                ", \n\"fname:\"" + fname + '\"' +
+                ", \n\"patron:\"" + patron + '\"' +
+                ", \n\"dob=\"" + dob + '\"' +
+                ", \n\"gender:" + gender +
+                ", \n\"mphone:\"" + mphone + '\"' +
+                ", \n\"relations:\"" + relations + '\"' +
+                ", \n\"company:\"" + companyId + '\"' +
+                ", \n\"address:\"" + addressId + '\"' +
+                ", \n\"children:\"" + children + '\"' +
+                "\n}";
     }
 }
