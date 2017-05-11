@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by Zver.
  */
-@Controller
+@RestController
 @RequestMapping("/company")
 public class CompanyController {
 

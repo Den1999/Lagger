@@ -5,13 +5,12 @@ import by.vsu.Lagger.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Zver.
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -52,6 +51,7 @@ public class UserController {
 
     /**
      * delete user by id
+     *
      * @param id is id
      * @return user
      */
@@ -77,7 +77,7 @@ public class UserController {
     @ResponseBody
     User editUser(@PathVariable("id") Long id, @RequestBody User user) {
         logger.info("Start deleteEmployee.");
-        userService.edit(user,id);
+        userService.edit(user, id);
         return user;
     }
 }
