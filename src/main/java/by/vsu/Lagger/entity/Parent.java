@@ -182,15 +182,65 @@ public class Parent implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
-                "\n\"id\":" + id +
-                ", \n\"sname:\"" + sname + '\"' +
-                ", \n\"fname:\"" + fname + '\"' +
-                ", \n\"patron:\"" + patron + '\"' +
-                ", \n\"dob=\"" + dob + '\"' +
-                ", \n\"gender:" + gender +
-                ", \n\"mphone:\"" + mphone + '\"' +
-                ", \n\"relations:\"" + relations + '\"' +
-                "\n}";
+        try {
+            return "{" +
+                    "\n\"id\":" + id +
+                    ", \n\"sname:\"" + sname + '\"' +
+                    ", \n\"fname:\"" + fname + '\"' +
+                    ", \n\"patron:\"" + patron + '\"' +
+                    ", \n\"dob=\"" + dob + '\"' +
+                    ", \n\"gender:" + gender +
+                    ", \n\"mphone:\"" + mphone + '\"' +
+                    ", \n\"relations:\"" + relations + '\"' +
+                    ", \n\"company:\"" + company.getId() + '\"' +
+                    ", \n\"address:\"" + address.getId() + '\"' +
+                    "\n}";
+        }
+        catch (NullPointerException e){
+            try {
+                return "{" +
+                        "\n\"id\":" + id +
+                        ", \n\"sname:\"" + sname + '\"' +
+                        ", \n\"fname:\"" + fname + '\"' +
+                        ", \n\"patron:\"" + patron + '\"' +
+                        ", \n\"dob=\"" + dob + '\"' +
+                        ", \n\"gender:" + gender +
+                        ", \n\"mphone:\"" + mphone + '\"' +
+                        ", \n\"relations:\"" + relations + '\"' +
+                        ", \n\"company:\" null" +
+                        ", \n\"address:\"" + address.getId() + '\"' +
+                        "\n}";
+            }
+            catch (NullPointerException aye){
+                try {
+                    return "{" +
+                            "\n\"id\":" + id +
+                            ", \n\"sname:\"" + sname + '\"' +
+                            ", \n\"fname:\"" + fname + '\"' +
+                            ", \n\"patron:\"" + patron + '\"' +
+                            ", \n\"dob=\"" + dob + '\"' +
+                            ", \n\"gender:" + gender +
+                            ", \n\"mphone:\"" + mphone + '\"' +
+                            ", \n\"relations:\"" + relations + '\"' +
+                            ", \n\"company:\"" + company.getId() + '\"' +
+                            ", \n\"address:\" null" +
+                            "\n}";
+                }
+                catch (NullPointerException gg){
+                    return "{" +
+                            "\n\"id\":" + id +
+                            ", \n\"sname:\"" + sname + '\"' +
+                            ", \n\"fname:\"" + fname + '\"' +
+                            ", \n\"patron:\"" + patron + '\"' +
+                            ", \n\"dob=\"" + dob + '\"' +
+                            ", \n\"gender:" + gender +
+                            ", \n\"mphone:\"" + mphone + '\"' +
+                            ", \n\"relations:\"" + relations + '\"' +
+                            ", \n\"company:\" null" +
+                            ", \n\"address:\" null" +
+                            "\n}";
+                }
+            }
+        }
     }
 }

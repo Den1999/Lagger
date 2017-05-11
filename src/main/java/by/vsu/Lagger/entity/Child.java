@@ -162,14 +162,61 @@ public class Child implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
-                "\n\"id\":" + id +
-                ", \n\"sname\":\"" + sname + '\"' +
-                ", \n\"fname\":\"" + fname + '\"' +
-                ", \n\"patron\":\"" + patron + '\"' +
-                ", \n\"dob\":\"" + dob + '\"' +
-                ", \n\"gender\":" + gender +
-                ", \n\"mphone\":\"" + mphone + '\"' +
-                "\n}";
+        try {
+            return "{" +
+                    "\n\"id\":" + id +
+                    ", \n\"sname\":\"" + sname + '\"' +
+                    ", \n\"fname\":\"" + fname + '\"' +
+                    ", \n\"patron\":\"" + patron + '\"' +
+                    ", \n\"dob\":\"" + dob + '\"' +
+                    ", \n\"gender\":" + gender +
+                    ", \n\"mphone\":\"" + mphone + '\"' +
+                    ", \n\"address\":\"" + address + '\"' +
+                    ", \n\"squad\":\"" + squad + '\"' +
+                    "\n}";
+        }
+        catch (NullPointerException e){
+            try {
+                return "{" +
+                        "\n\"id\":" + id +
+                        ", \n\"sname\":\"" + sname + '\"' +
+                        ", \n\"fname\":\"" + fname + '\"' +
+                        ", \n\"patron\":\"" + patron + '\"' +
+                        ", \n\"dob\":\"" + dob + '\"' +
+                        ", \n\"gender\":" + gender +
+                        ", \n\"mphone\":\"" + mphone + '\"' +
+                        ", \n\"address\":\"null" + '\"' +
+                        ", \n\"squad\":\"" + squad + '\"' +
+                        "\n}";
+            }
+            catch (NullPointerException aye){
+                try {
+                    return "{" +
+                            "\n\"id\":" + id +
+                            ", \n\"sname\":\"" + sname + '\"' +
+                            ", \n\"fname\":\"" + fname + '\"' +
+                            ", \n\"patron\":\"" + patron + '\"' +
+                            ", \n\"dob\":\"" + dob + '\"' +
+                            ", \n\"gender\":" + gender +
+                            ", \n\"mphone\":\"" + mphone + '\"' +
+                            ", \n\"address\":\"" + address + '\"' +
+                            ", \n\"squad\":\"null" + '\"' +
+                            "\n}";
+                }
+                catch (NullPointerException gg){
+                    return "{" +
+                            "\n\"id\":" + id +
+                            ", \n\"sname\":\"" + sname + '\"' +
+                            ", \n\"fname\":\"" + fname + '\"' +
+                            ", \n\"patron\":\"" + patron + '\"' +
+                            ", \n\"dob\":\"" + dob + '\"' +
+                            ", \n\"gender\":" + gender +
+                            ", \n\"mphone\":\"" + mphone + '\"' +
+                            ", \n\"address\":\"null" + '\"' +
+                            ", \n\"squad\":\"null" + '\"' +
+                            "\n}";
+                }
+            }
+        }
     }
 }
