@@ -61,14 +61,4 @@ public class ParentService {
         existingParent.setAddress(parent.getAddress());
         parentDao.save(existingParent);
     }
-
-    public void addChild(Long id, Parent parent) {
-        Parent existingParent = parentDao.findOne(id);
-        Set<Child> children = parent.getChildren();
-        existingParent.setChildren(children);
-        for (Child c : children) {
-            childService.addParent(c.getId(), c);
-        }
-        parentDao.save(existingParent);
-    }
 }

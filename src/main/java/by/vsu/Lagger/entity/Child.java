@@ -46,8 +46,8 @@ public class Child implements Serializable {
     @ManyToOne
     private Address address;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "children")
-    private Set<Parent> parents = new HashSet<>();
+    @ManyToOne
+    private Parent parent;
 
     public Child(Long id) {
         this.id = id;
@@ -165,19 +165,6 @@ public class Child implements Serializable {
         this.address = address;
     }
 
-    public Set<Parent> getParents() {
-        try {
-            return parents;
-        }
-        catch (NullPointerException e){
-            return null;
-        }
-    }
-
-    public void setParents(Set<Parent> parents) {
-        this.parents = parents;
-    }
-
     @Override
     public String toString() {
         Long addressId, squadId;
@@ -203,7 +190,20 @@ public class Child implements Serializable {
                     ", \n\"mphone\":\"" + mphone + '\"' +
                         ", \n\"address\":\"" + addressId + '\"' +
                     ", \n\"squad\":\"" + squadId + '\"' +
-                    //", \n\"parents\":\"" + parents + '\"' +
+                    ", \n\"parent\":\"" + parent + '\"' +
                     "\n}";
         }
+
+    public Parent getParent() {
+        try {
+            return parent;
+        }
+        catch (NullPointerException e){
+            return null;
+        }
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
 }

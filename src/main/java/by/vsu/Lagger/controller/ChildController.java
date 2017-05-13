@@ -105,12 +105,42 @@ public class ChildController {
     @RequestMapping(value = "/addsquad/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
-    String addCompany(@PathVariable("id") Long id, @RequestBody Child child) {
+    String addSquad(@PathVariable("id") Long id, @RequestBody Child child) {
         logger.info("Start add squad to child.");
-       childService.addSquad(id,child);
+        childService.addSquad(id, child);
         return childService.get(id).toString();
     }
 
+    /**
+     * add parent to child
+     *
+     * @param id    is id
+     * @param child is child
+     * @return child
+     */
+    @RequestMapping(value = "/addparent/{id}", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String addParent(@PathVariable("id") Long id, @RequestBody Child child) {
+        logger.info("Start add squad to child.");
+        childService.addParent(id, child);
+        return childService.get(id).toString();
+    }
+
+    /**
+     * delete parent to child
+     *
+     * @param id is id
+     * @return child
+     */
+    @RequestMapping(value = "/deleteparent/{id}", method = RequestMethod.DELETE)
+    public
+    @ResponseBody
+    String deleteParent(@PathVariable("id") Long id) {
+        logger.info("Start add squad to child.");
+        childService.deleteParent(id);
+        return childService.get(id).toString();
+    }
 
     /**
      * add address to child

@@ -62,8 +62,14 @@ public class ChildService {
 
     public void addParent(Long id, Child child) {
         Child existingChild = childDao.findOne(id);
-        Set<Parent> parents = child.getParents();
-        existingChild.setParents(parents);
+        Parent parent = child.getParent();
+        existingChild.setParent(parent);
+        childDao.save(existingChild);
+    }
+
+    public void deleteParent(Long id){
+        Child existingChild = childDao.findOne(id);
+        existingChild.setParent(null);
         childDao.save(existingChild);
     }
 }

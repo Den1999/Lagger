@@ -127,20 +127,4 @@ public class ParentController {
         parentService.addAddress(id, parent);
         return parentService.get(id).toString();
     }
-
-    /**
-     * add child to parent
-     *
-     * @param id     is id
-     * @param parent is parent
-     * @return child
-     */
-    @RequestMapping(value = "/addchild/{id}", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    String addChild(@PathVariable("id") Long id, @RequestBody Parent parent) {
-        logger.info("Start add address to child.");
-        parentService.addChild(id, parent);
-        return parentService.get(id).toString();
-    }
 }

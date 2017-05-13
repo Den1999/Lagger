@@ -48,11 +48,7 @@ public class Parent implements Serializable {
     @ManyToOne
     private Address address;
 
-    @ManyToMany
-    @JoinTable(name = "chpa",
-            joinColumns = @JoinColumn(name = "par_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "ch_id", referencedColumnName = "id")
-    )
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private Set<Child> children = new HashSet<>();
 
     public Parent(Long id) {
@@ -184,7 +180,7 @@ public class Parent implements Serializable {
         this.address = address;
     }
 
-    public Set<Child> getChildren() {
+    /*public Set<Child> getChildren() {
         try {
             return children;
         }
@@ -195,7 +191,7 @@ public class Parent implements Serializable {
 
     public void setChildren(Set<Child> children) {
         this.children = children;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -223,7 +219,7 @@ public class Parent implements Serializable {
                 ", \n\"relations:\"" + relations + '\"' +
                 ", \n\"company:\"" + companyId + '\"' +
                 ", \n\"address:\"" + addressId + '\"' +
-                ", \n\"children:\"" + children + '\"' +
+                //", \n\"children:\"" + children + '\"' +
                 "\n}";
     }
 }
