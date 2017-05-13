@@ -31,6 +31,9 @@ public class Squad implements Serializable {
     @Column(name = "maxChildren")
     private Short maxChildren;
 
+    @Column(name = "number")
+    private Short number;
+
     @OneToMany(mappedBy = "squad", fetch = FetchType.LAZY)
     private Set<Child> children = new HashSet<>();
 
@@ -51,7 +54,9 @@ public class Squad implements Serializable {
         if (mainSname != null ? !mainSname.equals(squad.mainSname) : squad.mainSname != null) return false;
         if (mainFname != null ? !mainFname.equals(squad.mainFname) : squad.mainFname != null) return false;
         if (mainPatron != null ? !mainPatron.equals(squad.mainPatron) : squad.mainPatron != null) return false;
-        return maxChildren != null ? maxChildren.equals(squad.maxChildren) : squad.maxChildren == null;
+        if (maxChildren != null ? !maxChildren.equals(squad.maxChildren) : squad.maxChildren != null) return false;
+        if (number != null ? !number.equals(squad.number) : squad.number != null) return false;
+        return children != null ? children.equals(squad.children) : squad.children == null;
     }
 
     @Override
@@ -61,6 +66,8 @@ public class Squad implements Serializable {
         result = 31 * result + (mainFname != null ? mainFname.hashCode() : 0);
         result = 31 * result + (mainPatron != null ? mainPatron.hashCode() : 0);
         result = 31 * result + (maxChildren != null ? maxChildren.hashCode() : 0);
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + (children != null ? children.hashCode() : 0);
         return result;
     }
 
@@ -71,6 +78,15 @@ public class Squad implements Serializable {
         catch (NullPointerException e){
             return null;
         }
+    }
+
+
+    public Short getNumber() {
+        return number;
+    }
+
+    public void setNumber(Short number) {
+        this.number = number;
     }
 
     public void setId(Long id) {
@@ -113,10 +129,12 @@ public class Squad implements Serializable {
     public String toString() {
         return "{" +
                 "\n\"id\":" + id +
+                ", \n\"number\":\"" + number + '\"' +
                 ", \n\"mainSname\":\"" + mainSname + '\"' +
                 ", \n\"mainFname\":\"" + mainFname + '\"' +
                 ", \n\"mainPatron\":\"" + mainPatron + '\"' +
                 ", \n\"maxChildren\":\"" + maxChildren + '\"' +
                 "\n}";
     }
+
 }
