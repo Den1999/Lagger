@@ -37,6 +37,7 @@ public class SquadService {
         existingSquad.setMainSname(squad.getMainSname());
         existingSquad.setMainPatron(squad.getMainPatron());
         existingSquad.setMaxChildren(squad.getMaxChildren());
+        existingSquad.setNumber(squad.getNumber());
         squadDao.save(existingSquad);
     }
 }
