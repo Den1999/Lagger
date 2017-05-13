@@ -5,6 +5,7 @@ import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Set;
 
@@ -47,15 +48,10 @@ public class ChildService {
         childDao.save(existingChild);
     }
 
-    public boolean addSquad(Long id, Child child) {
+    public void addSquad(Long id, Child child) {
         Child existingChild = childDao.findOne(id);
-        if (child.getSquad().getChildren().size() == child.getSquad().getMaxChildren()) {
-            return false;
-        } else {
-            existingChild.setSquad(child.getSquad());
-            childDao.save(existingChild);
-        }
-        return true;
+        existingChild.setSquad(child.getSquad());
+        childDao.save(existingChild);
     }
 
     public void addAddress(Long id, Child child) {
