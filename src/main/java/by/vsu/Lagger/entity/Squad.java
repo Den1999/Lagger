@@ -34,14 +34,6 @@ public class Squad implements Serializable {
     @Column(name = "number")
     private Short number;
 
-    public Set<Child> getChildren() {
-        return children;
-    }
-
-    public void setChildren(Set<Child> children) {
-        this.children = children;
-    }
-
     @OneToMany(mappedBy = "squad", fetch = FetchType.LAZY)
     private Set<Child> children = new HashSet<>();
 
