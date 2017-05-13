@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private static final long serialVersionUID = -7788619177798333712L;
+    private static String privilege;
 
     @Id
     @Column(name = "id")
@@ -81,5 +82,13 @@ public class User implements Serializable {
                 ", \n\"login\":\"" + login + '\"' +
                 ", \n\"password\":\"" + password + '\"' +
                 "\n}";
+    }
+
+    public String getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(String privilege) {
+        this.privilege = privilege;
     }
 }

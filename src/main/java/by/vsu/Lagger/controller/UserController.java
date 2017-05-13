@@ -55,10 +55,23 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public
     @ResponseBody
-    User createUser(@RequestBody User user) {
+    String createUser(@RequestBody User user) {
         logger.info("Start createEmployee.");
-        userService.add(user);
-        return user;
+       return userService.add(user);
+    }
+
+    /**
+     *authorization
+     *
+     * @param user is user
+     * @return user
+     */
+    @RequestMapping(value = "/authorize", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String authorization(@RequestBody User user) {
+        logger.info("Start createEmployee.");
+        return userService.authorize(user);
     }
 
 
