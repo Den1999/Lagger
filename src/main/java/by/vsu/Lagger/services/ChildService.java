@@ -1,7 +1,6 @@
 package by.vsu.Lagger.services;
 
 import by.vsu.Lagger.dao.ChildDao;
-import by.vsu.Lagger.dao.ParentDao;
 import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class ChildService {
         childDao.save(child);
     }
 
-    public String getAll(){
+    public String getAll() {
         return childDao.findAll().toString();
     }
 
@@ -48,10 +47,15 @@ public class ChildService {
         childDao.save(existingChild);
     }
 
-    public void addSquad(Long id, Child child) {
+    public boolean addSquad(Long id, Child child) {
         Child existingChild = childDao.findOne(id);
-        existingChild.setSquad(child.getSquad());
-        childDao.save(existingChild);
+        if (child.getSquad().getChildren().size() == child.getSquad().getMaxChildren()) {
+            return false;
+        } else {
+            existingChild.setSquad(child.getSquad());
+            childDao.save(existingChild);
+        }
+        return true;
     }
 
     public void addAddress(Long id, Child child) {

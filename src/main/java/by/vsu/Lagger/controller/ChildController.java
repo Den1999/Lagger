@@ -107,8 +107,12 @@ public class ChildController {
     @ResponseBody
     String addCompany(@PathVariable("id") Long id, @RequestBody Child child) {
         logger.info("Start add squad to child.");
-        childService.addSquad(id, child);
-        return childService.get(id).toString();
+        if(childService.addSquad(id,child)) {
+            return childService.get(id).toString();
+        }
+        else{
+            return "Error, no more children can add to this squad!";
+        }
     }
 
 
