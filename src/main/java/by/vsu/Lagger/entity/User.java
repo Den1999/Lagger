@@ -23,8 +23,12 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    public User(){}
-    public User(Long id){ this.id=id;}
+    public User() {
+    }
+
+    public User(Long id) {
+        this.id = id;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -68,5 +72,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\n\"id\":" + id +
+                ", \n\"login\":\"" + login + '\"' +
+                ", \n\"password\":\"" + password + '\"' +
+                "\n}";
     }
 }

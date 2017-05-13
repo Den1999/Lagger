@@ -34,6 +34,19 @@ public class AddressController {
 
 
     /**
+     * get all address
+     *
+     * @return all addresses
+     */
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getAllAddresses() {
+        return addressService.getAll();
+    }
+
+
+    /**
      * add address
      *
      * @param address is address

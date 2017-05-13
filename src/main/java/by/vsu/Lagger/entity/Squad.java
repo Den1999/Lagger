@@ -108,4 +108,15 @@ public class Squad implements Serializable {
     public void setMaxChildren(Short maxChildren) {
         this.maxChildren = maxChildren;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\n\"id\":" + id +
+                ", \n\"mainSname\":\"" + mainSname + '\"' +
+                ", \n\"mainFname\":\"" + mainFname + '\"' +
+                ", \n\"mainPatron\":\"" + mainPatron + '\"' +
+                ", \n\"maxChildren\":\"" + maxChildren + '\"' +
+                "\n}";
+    }
 }

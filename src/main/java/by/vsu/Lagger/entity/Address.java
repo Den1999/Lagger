@@ -53,8 +53,7 @@ public class Address implements Serializable {
     public Long getId() {
         try {
             return id;
-        }
-        catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return null;
         }
     }
@@ -141,5 +140,18 @@ public class Address implements Serializable {
         result = 31 * result + (parents != null ? parents.hashCode() : 0);
         result = 31 * result + (children != null ? children.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\n\"id\":" + id +
+                ", \n\"city\":\"" + city + '\"' +
+                ", \n\"street\":\"" + street + '\"' +
+                ", \n\"house\":\"" + house + '\"' +
+                ", \n\"pavilion\":\"" + pavilion + '\"' +
+                ", \n\"flat\":" + flat +
+                ", \n\"phone\":\"" + phone + '\"' +
+                "\n}";
     }
 }

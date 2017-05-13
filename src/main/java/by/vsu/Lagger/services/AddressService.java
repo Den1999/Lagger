@@ -29,6 +29,10 @@ public class AddressService {
         addressDao.delete(address);
     }
 
+    public String getAll(){
+        return addressDao.findAll().toString();
+    }
+
     public void edit(Address address, Long id) {
         Address existingAddress =  addressDao.findOne(id);
         existingAddress.setCity(address.getCity());

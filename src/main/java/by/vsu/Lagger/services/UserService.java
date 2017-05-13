@@ -27,6 +27,10 @@ public class UserService {
         userDao.delete(user);
     }
 
+    public String getAll(){
+        return userDao.findAll().toString();
+    }
+
     public void edit(User user, Long id) {
         User existingUser = userDao.findOne(id);
         existingUser.setLogin(user.getLogin());

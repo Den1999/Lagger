@@ -34,6 +34,19 @@ public class ChildController {
 
 
     /**
+     * get all children
+     *
+     * @return all children
+     */
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getAllChildren() {
+        return childService.getAll();
+    }
+
+
+    /**
      * add child
      *
      * @param child is child

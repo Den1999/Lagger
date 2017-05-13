@@ -50,6 +50,19 @@ public class SquadController {
 
 
     /**
+     * get all squads
+     *
+     * @return all squads
+     */
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getAllSquads() {
+        return squadService.getAll();
+    }
+
+
+    /**
      * delete squad by id
      *
      * @param id is id

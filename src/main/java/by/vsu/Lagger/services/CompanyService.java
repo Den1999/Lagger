@@ -26,6 +26,10 @@ public class CompanyService {
         companyDao.save(company);
     }
 
+    public String getAll(){
+        return companyDao.findAll().toString();
+    }
+
     public void delete(Long id) {
        Company company = new Company(id);
        companyDao.delete(company);

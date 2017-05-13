@@ -34,6 +34,19 @@ public class ParentController {
 
 
     /**
+     * get all parents
+     *
+     * @return all parents
+     */
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getAllParents() {
+        return parentService.getAll();
+    }
+
+
+    /**
      * add parent
      *
      * @param parent is parent

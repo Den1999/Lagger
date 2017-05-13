@@ -35,6 +35,19 @@ public class CompanyController {
 
 
     /**
+     * get all companies
+     *
+     * @return all companies
+     */
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getAllCompanies() {
+        return companyService.getAll();
+    }
+
+
+    /**
      * add company
      *
      * @param company is company

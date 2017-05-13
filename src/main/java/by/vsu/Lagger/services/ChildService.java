@@ -26,6 +26,10 @@ public class ChildService {
         childDao.save(child);
     }
 
+    public String getAll(){
+        return childDao.findAll().toString();
+    }
+
     public void delete(Long id) {
         Child child = new Child(id);
         childDao.delete(child);

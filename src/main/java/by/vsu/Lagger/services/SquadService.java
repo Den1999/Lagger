@@ -27,6 +27,10 @@ public class SquadService {
         squadDao.delete(squad);
     }
 
+    public String getAll(){
+        return squadDao.findAll().toString();
+    }
+
     public void edit(Squad squad, Long id) {
         Squad existingSquad = new Squad(id);
         existingSquad.setMainFname(squad.getMainFname());

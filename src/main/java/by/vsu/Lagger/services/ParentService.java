@@ -23,6 +23,10 @@ public class ParentService {
         return parentDao.findOne(id);
     }
 
+    public String getAll(){
+        return parentDao.findAll().toString();
+    }
+
     public void add(Parent parent) {
         parentDao.save(parent);
     }

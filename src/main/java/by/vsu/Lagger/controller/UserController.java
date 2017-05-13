@@ -34,6 +34,19 @@ public class UserController {
 
 
     /**
+     * get all users
+     *
+     * @return all users
+     */
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getAllUsers() {
+        return userService.getAll();
+    }
+
+
+    /**
      * add user
      *
      * @param user is user
