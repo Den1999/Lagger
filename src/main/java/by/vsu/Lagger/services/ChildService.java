@@ -1,12 +1,15 @@
 package by.vsu.Lagger.services;
 
 import by.vsu.Lagger.dao.ChildDao;
+import by.vsu.Lagger.dao.SquadDao;
 import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
+import by.vsu.Lagger.entity.Squad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -17,6 +20,8 @@ public class ChildService {
 
     @Autowired
     private ChildDao childDao;
+    @Autowired
+    private SquadDao squadDao;
 
     public Child get(Long id) {
         return childDao.findOne(id);
@@ -48,10 +53,25 @@ public class ChildService {
         childDao.save(existingChild);
     }
 
-    public void addSquad(Long id, Child child) {
-        Child existingChild = childDao.findOne(id);
-        existingChild.setSquad(child.getSquad());
-        childDao.save(existingChild);
+    public String addSquad(Long id, Child child) {
+        Short count=0;
+        for(Child c: childDao.findAll()){
+            if(!StringUtils.isEmpty(c.getSquad())) {
+                if (c.getSquad().getId().equals(child.getSquad().getId())) {
+                    count++;
+                }
+            }
+        }
+        System.out.println(count+" "+squadDao.findOne(child.getSquad().getId()).getMaxChildren());
+        if(Objects.equals(count, squadDao.findOne(child.getSquad().getId()).getMaxChildren())){
+            return "Squad is even full!";
+        }
+        else {
+            Child existingChild = childDao.findOne(id);
+            existingChild.setSquad(child.getSquad());
+            childDao.save(existingChild);
+            return existingChild.toString();
+        }
     }
 
     public void addAddress(Long id, Child child) {

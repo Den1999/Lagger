@@ -107,8 +107,7 @@ public class ChildController {
     @ResponseBody
     String addSquad(@PathVariable("id") Long id, @RequestBody Child child) {
         logger.info("Start add squad to child.");
-        childService.addSquad(id, child);
-        return childService.get(id).toString();
+       return childService.addSquad(id, child);
     }
 
     /**
