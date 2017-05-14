@@ -50,7 +50,7 @@ public class ParentService {
         parentDao.save(existingParent);
     }
 
-    public void addCompany(Long id, Parent parent) {
+   /* public void addCompany(Long id, Parent parent) {
         Parent existingParent = parentDao.findOne(id);
         existingParent.setCompany(parent.getCompany());
         parentDao.save(existingParent);
@@ -60,5 +60,5 @@ public class ParentService {
         Parent existingParent = parentDao.findOne(id);
         existingParent.setAddress(parent.getAddress());
         parentDao.save(existingParent);
-    }
+    }*/
 }

@@ -102,14 +102,14 @@ public class ParentController {
      * @param parent is parent
      * @return parent
      */
-    @RequestMapping(value = "/addcompany/{id}", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/addcompany/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
     String addCompany(@PathVariable("id") Long id, @RequestBody Parent parent) {
         logger.info("Start add company to parent.");
         parentService.addCompany(id, parent);
         return parentService.get(id).toString();
-    }
+    }*/
 
 
     /**
@@ -119,12 +119,12 @@ public class ParentController {
      * @param parent is parent
      * @return parent
      */
-    @RequestMapping(value = "/addaddress/{id}", method = RequestMethod.POST)
+   /* @RequestMapping(value = "/addaddress/{id}", method = RequestMethod.POST)
     public
     @ResponseBody
     String addAddress(@PathVariable("id") Long id, @RequestBody Parent parent) {
         logger.info("Start add address to parent.");
         parentService.addAddress(id, parent);
         return parentService.get(id).toString();
-    }
+    }*/
 }

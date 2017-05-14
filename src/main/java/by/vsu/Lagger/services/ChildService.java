@@ -40,7 +40,7 @@ public class ChildService {
         childDao.delete(child);
     }
 
-    public void edit(Child child, Long id) {
+    public String edit(Child child, Long id) {
         Child existingChild = childDao.findOne(id);
         existingChild.setSname(child.getSname());
         existingChild.setFname(child.getFname());
@@ -49,11 +49,27 @@ public class ChildService {
         existingChild.setGender(child.isGender());
         existingChild.setMphone(child.getMphone());
         existingChild.setAddress(child.getAddress());
-        existingChild.setSquad(child.getSquad());
-        childDao.save(existingChild);
+        existingChild.setParent(child.getParent());
+        Short count=0;
+        for(Child c: childDao.findAll()){
+            if(!StringUtils.isEmpty(c.getSquad())) {
+                if (c.getSquad().getId().equals(child.getSquad().getId())) {
+                    count++;
+                }
+            }
+        }
+        System.out.println(count+" "+squadDao.findOne(child.getSquad().getId()).getMaxChildren());
+        if(Objects.equals(count, squadDao.findOne(child.getSquad().getId()).getMaxChildren())){
+            return "Squad is even full!";
+        }
+        else {
+            existingChild.setSquad(child.getSquad());
+            childDao.save(existingChild);
+            return existingChild.toString();
+        }
     }
 
-    public String addSquad(Long id, Child child) {
+    /*public String addSquad(Long id, Child child) {
         Short count=0;
         for(Child c: childDao.findAll()){
             if(!StringUtils.isEmpty(c.getSquad())) {
@@ -85,7 +101,7 @@ public class ChildService {
         Parent parent = child.getParent();
         existingChild.setParent(parent);
         childDao.save(existingChild);
-    }
+    }*/
 
     public void deleteParent(Long id){
         Child existingChild = childDao.findOne(id);
