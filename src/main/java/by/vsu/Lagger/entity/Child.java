@@ -188,9 +188,9 @@ public class Child implements Serializable {
                     ", \n\"dob\":\"" + dob + '\"' +
                     ", \n\"gender\":" + gender +
                     ", \n\"mphone\":\"" + mphone + '\"' +
-                        ", \n\"address\":\"" + addressId + '\"' +
-                    ", \n\"squad\":\"" + squadId + '\"' +
-                    ", \n\"parent\":\"" + parent + '\"' +
+                        ", \n\"address\":" + addressId +
+                    ", \n\"squad\":" + squadId +
+                    ", \n\"parent\":" + parent +
                     "\n}";
         }
 

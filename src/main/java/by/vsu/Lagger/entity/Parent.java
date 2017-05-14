@@ -210,15 +210,15 @@ public class Parent implements Serializable {
         }
         return "{" +
                 "\n\"id\":" + id +
-                ", \n\"sname:\"" + sname + '\"' +
-                ", \n\"fname:\"" + fname + '\"' +
-                ", \n\"patron:\"" + patron + '\"' +
-                ", \n\"dob=\"" + dob + '\"' +
-                ", \n\"gender:" + gender +
-                ", \n\"mphone:\"" + mphone + '\"' +
-                ", \n\"relations:\"" + relations + '\"' +
-                ", \n\"company:\"" + companyId + '\"' +
-                ", \n\"address:\"" + addressId + '\"' +
+                ", \n\"sname\":\"" + sname + '\"' +
+                ", \n\"fname\":\"" + fname + '\"' +
+                ", \n\"patron\":\"" + patron + '\"' +
+                ", \n\"dob\":\"" + dob + '\"' +
+                ", \n\"gender\":" + gender +
+                ", \n\"mphone\":\"" + mphone + '\"' +
+                ", \n\"relations\":\"" + relations + '\"' +
+                ", \n\"company\":" + companyId +
+                ", \n\"address\":" + addressId +
                 //", \n\"children:\"" + children + '\"' +
                 "\n}";
     }
