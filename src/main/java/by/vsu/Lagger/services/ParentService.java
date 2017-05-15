@@ -1,12 +1,9 @@
 package by.vsu.Lagger.services;
 
 import by.vsu.Lagger.dao.ParentDao;
-import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
 
 /**
  * Created by Zver.
@@ -16,14 +13,12 @@ public class ParentService {
 
     @Autowired
     private ParentDao parentDao;
-    @Autowired
-    private ChildService childService;
 
     public Parent get(Long id) {
         return parentDao.findOne(id);
     }
 
-    public String getAll(){
+    public String getAll() {
         return parentDao.findAll().toString();
     }
 
@@ -49,16 +44,4 @@ public class ParentService {
         existingParent.setAddress(parent.getAddress());
         parentDao.save(existingParent);
     }
-
-   /* public void addCompany(Long id, Parent parent) {
-        Parent existingParent = parentDao.findOne(id);
-        existingParent.setCompany(parent.getCompany());
-        parentDao.save(existingParent);
-    }
-
-    public void addAddress(Long id, Parent parent) {
-        Parent existingParent = parentDao.findOne(id);
-        existingParent.setAddress(parent.getAddress());
-        parentDao.save(existingParent);
-    }*/
 }

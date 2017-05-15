@@ -57,8 +57,7 @@ public class ChildController {
     @ResponseBody
     String createChild(@RequestBody Child child) {
         logger.info("Start create child.");
-        childService.add(child);
-        return child.toString();
+       return childService.add(child);
     }
 
 
@@ -90,40 +89,8 @@ public class ChildController {
     @ResponseBody
     String editChild(@PathVariable("id") Long id, @RequestBody Child child) {
         logger.info("Start update child.");
-       return childService.edit(child, id);
+        return childService.edit(child, id);
     }
-
-
-    /**
-     * add squad to child
-     *
-     * @param id    is id
-     * @param child is child
-     * @return child
-     */
-   /* @RequestMapping(value = "/addsquad/{id}", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    String addSquad(@PathVariable("id") Long id, @RequestBody Child child) {
-        logger.info("Start add squad to child.");
-       return childService.addSquad(id, child);
-    }*/
-
-    /**
-     * add parent to child
-     *
-     * @param id    is id
-     * @param child is child
-     * @return child
-     */
-   /* @RequestMapping(value = "/addparent/{id}", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    String addParent(@PathVariable("id") Long id, @RequestBody Child child) {
-        logger.info("Start add squad to child.");
-        childService.addParent(id, child);
-        return childService.get(id).toString();
-    }*/
 
     /**
      * delete parent to child
@@ -139,20 +106,4 @@ public class ChildController {
         childService.deleteParent(id);
         return childService.get(id).toString();
     }
-
-    /**
-     * add address to child
-     *
-     * @param id    is id
-     * @param child is child
-     * @return child
-     */
-   /* @RequestMapping(value = "/addaddress/{id}", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    String addAddress(@PathVariable("id") Long id, @RequestBody Child child) {
-        logger.info("Start add address to child.");
-        childService.addAddress(id, child);
-        return childService.get(id).toString();
-    }*/
 }

@@ -27,8 +27,22 @@ public class ChildService {
         return childDao.findOne(id);
     }
 
-    public void add(Child child) {
-        childDao.save(child);
+    public String add(Child child) {
+        Short count=0;
+        for(Child c: childDao.findAll()){
+            if(!StringUtils.isEmpty(c.getSquad())) {
+                if (c.getSquad().getId().equals(child.getSquad().getId())) {
+                    count++;
+                }
+            }
+        }
+        if(Objects.equals(count, squadDao.findOne(child.getSquad().getId()).getMaxChildren())){
+            return "Squad is even full!";
+        }
+        else {
+            childDao.save(child);
+            return child.toString();
+        }
     }
 
     public String getAll() {
@@ -58,7 +72,6 @@ public class ChildService {
                 }
             }
         }
-        System.out.println(count+" "+squadDao.findOne(child.getSquad().getId()).getMaxChildren());
         if(Objects.equals(count, squadDao.findOne(child.getSquad().getId()).getMaxChildren())){
             return "Squad is even full!";
         }
@@ -68,40 +81,6 @@ public class ChildService {
             return existingChild.toString();
         }
     }
-
-    /*public String addSquad(Long id, Child child) {
-        Short count=0;
-        for(Child c: childDao.findAll()){
-            if(!StringUtils.isEmpty(c.getSquad())) {
-                if (c.getSquad().getId().equals(child.getSquad().getId())) {
-                    count++;
-                }
-            }
-        }
-        System.out.println(count+" "+squadDao.findOne(child.getSquad().getId()).getMaxChildren());
-        if(Objects.equals(count, squadDao.findOne(child.getSquad().getId()).getMaxChildren())){
-            return "Squad is even full!";
-        }
-        else {
-            Child existingChild = childDao.findOne(id);
-            existingChild.setSquad(child.getSquad());
-            childDao.save(existingChild);
-            return existingChild.toString();
-        }
-    }
-
-    public void addAddress(Long id, Child child) {
-        Child existingChild = childDao.findOne(id);
-        existingChild.setAddress(child.getAddress());
-        childDao.save(existingChild);
-    }
-
-    public void addParent(Long id, Child child) {
-        Child existingChild = childDao.findOne(id);
-        Parent parent = child.getParent();
-        existingChild.setParent(parent);
-        childDao.save(existingChild);
-    }*/
 
     public void deleteParent(Long id){
         Child existingChild = childDao.findOne(id);
