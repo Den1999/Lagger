@@ -71,11 +71,9 @@ public class SquadController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public
     @ResponseBody
-    Squad deleteSquad(@PathVariable("id") Long id) {
+    String deleteSquad(@PathVariable("id") Long id) {
         logger.info("Start delete squad.");
-        Squad squad = squadService.get(id);
-        squadService.delete(id);
-        return squad;
+        return squadService.delete(id);
     }
 
 

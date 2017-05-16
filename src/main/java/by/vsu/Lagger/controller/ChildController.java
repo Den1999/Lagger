@@ -72,9 +72,7 @@ public class ChildController {
     @ResponseBody
     String deleteChild(@PathVariable("id") Long id) {
         logger.info("Start delete child.");
-        Child child = childService.get(id);
-        childService.delete(id);
-        return child.toString();
+       return childService.delete(id);
     }
 
 
@@ -102,7 +100,7 @@ public class ChildController {
     public
     @ResponseBody
     String deleteParent(@PathVariable("id") Long id) {
-        logger.info("Start add squad to child.");
+        logger.info("Start delete parent to child.");
         childService.deleteParent(id);
         return childService.get(id).toString();
     }

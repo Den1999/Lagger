@@ -1,9 +1,15 @@
 package by.vsu.Lagger.services;
 
+import by.vsu.Lagger.dao.ChildDao;
 import by.vsu.Lagger.dao.ParentDao;
+import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Zver.
@@ -13,6 +19,8 @@ public class ParentService {
 
     @Autowired
     private ParentDao parentDao;
+    @Autowired
+    private ChildDao childDao;
 
     public Parent get(Long id) {
         return parentDao.findOne(id);
@@ -26,9 +34,22 @@ public class ParentService {
         parentDao.save(parent);
     }
 
-    public void delete(Long id) {
-        Parent parent = new Parent(id);
-        parentDao.delete(parent);
+    public String delete(Long id) {
+        List<Long> children = new ArrayList<>();
+
+        for(Child c : childDao.findAll()){
+            if(!StringUtils.isEmpty(c.getParent())) {
+                if(c.getParent().getId().equals(id)){
+                    children.add(c.getId());
+                }
+            }
+        }
+
+        for (Long l : children){
+            childDao.delete(new Child(l));
+        }
+        parentDao.delete(new Parent(id));
+        return "Parent was deleted successfully";
     }
 
     public void edit(Parent parent, Long id) {

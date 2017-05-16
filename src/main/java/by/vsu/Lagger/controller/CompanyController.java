@@ -57,7 +57,7 @@ public class CompanyController {
     public
     @ResponseBody
     Company createCompany(@RequestBody Company company) {
-        logger.info("Start createEmployee.");
+        logger.info("Start create Company.");
         companyService.add(company);
         return company;
     }
@@ -71,11 +71,9 @@ public class CompanyController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public
     @ResponseBody
-    Company deleteCompany(@PathVariable("id") Long id) {
-        logger.info("Start deleteEmployee.");
-        Company company = companyService.get(id);
-        companyService.delete(id);
-        return company;
+    String deleteCompany(@PathVariable("id") Long id) {
+        logger.info("Start delete Company.");
+       return companyService.delete(id);
     }
 
 
@@ -89,7 +87,7 @@ public class CompanyController {
     public
     @ResponseBody
     Company editCompany(@PathVariable("id") Long id, @RequestBody Company company) {
-        logger.info("Start deleteEmployee.");
+        logger.info("Start update Company.");
         companyService.edit(company,id);
         return company;
     }

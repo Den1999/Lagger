@@ -71,11 +71,9 @@ public class AddressController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public
     @ResponseBody
-    Address deleteAddress(@PathVariable("id") Long id) {
+    String deleteAddress(@PathVariable("id") Long id) {
         logger.info("Start delete address.");
-        Address address = addressService.get(id);
-        addressService.delete(id);
-        return address;
+        return addressService.delete(id);
     }
 
 

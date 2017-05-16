@@ -80,9 +80,9 @@ public class ChildService {
         return childDao.findAll().toString();
     }
 
-    public void delete(Long id) {
-        Child child = new Child(id);
-        childDao.delete(child);
+    public String delete(Long id) {
+        childDao.delete(new Child(id));
+        return "Child was deleted successfully!";
     }
 
     public String edit(Child child, Long id) {
