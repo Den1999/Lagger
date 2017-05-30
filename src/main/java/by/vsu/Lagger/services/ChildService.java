@@ -6,7 +6,6 @@ import by.vsu.Lagger.dao.SquadDao;
 import by.vsu.Lagger.entity.Child;
 import by.vsu.Lagger.entity.Company;
 import by.vsu.Lagger.entity.Parent;
-import by.vsu.Lagger.entity.Squad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,7 +13,6 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by Zver.
@@ -40,23 +38,24 @@ public class ChildService {
         Integer permits = company.getPermits();
         Integer childrenWithSquad = 0;
         List<Long> parentsId = new ArrayList<>();
-        for(Parent p : parentDao.findAll()){
-            if(p.getCompany().getId().equals(company.getId())){
-                parentsId.add(p.getId());
+        for (Parent p : parentDao.findAll()) {
+            if (!StringUtils.isEmpty(p.getCompany())) {
+                if (p.getCompany().getId().equals(company.getId())) {
+                    parentsId.add(p.getId());
+                }
             }
         }
-        for (Child c : childDao.findAll()){
-            if(!StringUtils.isEmpty(c.getSquad())) {
+        for (Child c : childDao.findAll()) {
+            if (!StringUtils.isEmpty(c.getSquad())) {
                 if (parentsId.contains(c.getParent().getId())) {
                     childrenWithSquad++;
                 }
             }
         }
 
-        if(Objects.equals(permits, childrenWithSquad)){
+        if (Objects.equals(permits, childrenWithSquad)) {
             return "No more permits for this company!";
-        }
-        else {
+        } else {
 
             //checking for maximum places of the squad
             Short childrenInSquad = 0;
@@ -67,9 +66,15 @@ public class ChildService {
                     }
                 }
             }
-            if (Objects.equals(childrenInSquad, squadDao.findOne(child.getSquad().getId()).getMaxChildren())) {
-                return "Squad is even full!";
-            } else {
+            if (!StringUtils.isEmpty(child.getSquad())) {
+                if (Objects.equals(childrenInSquad, squadDao.findOne(child.getSquad().getId()).getMaxChildren())) {
+                    return "Squad is even full!";
+                } else {
+                    childDao.save(child);
+                    return child.toString();
+                }
+            }
+            else {
                 childDao.save(child);
                 return child.toString();
             }
@@ -101,23 +106,24 @@ public class ChildService {
         Integer permits = company.getPermits();
         Integer childrenWithSquad = 0;
         List<Long> parentsId = new ArrayList<>();
-        for(Parent p : parentDao.findAll()){
-            if(p.getCompany().getId().equals(company.getId())){
-                parentsId.add(p.getId());
+        for (Parent p : parentDao.findAll()) {
+            if (!StringUtils.isEmpty(p.getCompany())) {
+                if (p.getCompany().getId().equals(company.getId())) {
+                    parentsId.add(p.getId());
+                }
             }
         }
-        for (Child c : childDao.findAll()){
-            if(!StringUtils.isEmpty(c.getSquad())) {
+        for (Child c : childDao.findAll()) {
+            if (!StringUtils.isEmpty(c.getSquad())) {
                 if (parentsId.contains(c.getParent().getId())) {
                     childrenWithSquad++;
                 }
             }
         }
 
-        if(Objects.equals(permits, childrenWithSquad)){
+        if (Objects.equals(permits, childrenWithSquad)) {
             return "No more permits for this company!";
-        }
-        else {
+        } else {
 
             //checking for maximum places of the squad
             Short childrenInSquad = 0;
@@ -128,9 +134,16 @@ public class ChildService {
                     }
                 }
             }
-            if (Objects.equals(childrenInSquad, squadDao.findOne(child.getSquad().getId()).getMaxChildren())) {
-                return "Squad is even full!";
-            } else {
+            if (!StringUtils.isEmpty(child.getSquad()))  {
+                if (Objects.equals(childrenInSquad, squadDao.findOne(child.getSquad().getId()).getMaxChildren())) {
+                    return "Squad is even full!";
+                } else {
+                    existingChild.setSquad(child.getSquad());
+                    childDao.save(existingChild);
+                    return existingChild.toString();
+                }
+            }
+            else{
                 existingChild.setSquad(child.getSquad());
                 childDao.save(existingChild);
                 return existingChild.toString();
@@ -138,7 +151,7 @@ public class ChildService {
         }
     }
 
-    public void deleteParent(Long id){
+    public void deleteParent(Long id) {
         Child existingChild = childDao.findOne(id);
         existingChild.setParent(null);
         childDao.save(existingChild);
